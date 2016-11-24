@@ -12,3 +12,13 @@ Path         | Explanation
 `./test/`    | Doesn't run anywhere.
 `./**/**`    | Runs on client and server.
 `main.*`     | Runs after everything else.
+
+# Packages commands
+
+Command                      | Action
+---------------------------  | -------------
+`meteor`                     | Runs meteor app
+`meteor list`                | Show packages
+`meteor create app_name`     | Create meteor app
+`meteor add package_name`    | Add meteor packages
+`meteor remove package_name` | Add meteor packages
