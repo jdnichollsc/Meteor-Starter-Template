@@ -34,6 +34,16 @@ And in the **client** we subscribe to the publications
 Meteor.subscribe('posts', 'jdnichollsc');
 ```
 
+# Helpers
+We can use the helpers to get data on the client
+```javascript
+Template.posts.helpers({
+  recentPosts: function(){
+    return Posts.find({ createdAt: { $gte : moment().subtract(1, 'days').startOf('day') } });
+  }
+});
+```
+
 # Packages commands
 
 Command                      | Action
