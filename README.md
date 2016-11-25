@@ -52,6 +52,22 @@ Meteor.publish('allPosts', function(currentAuthor){
 });
 ```
 
+# Routes
+The **Iron Router** package allows us to configure routing in the application, to use filters and manage subscriptions.
+```cmd
+meteor add iron:router
+```
+And we can create a dynamic zone to show the current route using **layouts** and the **yield** helper.
+
+**layout.html**
+```html
+<template name="layout">
+  <div class="container">
+    {{> yield}}
+  </div>
+</template>
+```
+
 # Packages commands
 
 Command                      | Action
