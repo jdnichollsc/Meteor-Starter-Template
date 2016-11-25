@@ -1,5 +1,6 @@
 # Meteor Starter Template
 A template to start with Meteor. It includes a summary to understand the most important characteristics and how to work with Meteor in the correct way.
+
 ![Meteor.js](images/meteor.jpeg)
 
 ## Distributed Data Protocol - DDP
