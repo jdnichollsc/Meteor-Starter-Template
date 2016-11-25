@@ -18,6 +18,22 @@ Path         | Explanation
 `./**/**`    | Runs on client and server.
 `main.*`     | Runs after everything else.
 
+# Publications and Subscriptions
+To control the publications we need to remove the default auto-publishing package:
+```cmd
+meteor remove autopublish
+```
+In the **server** we configure that we will publish to our clients
+```javascript
+Meteor.publish('posts', function() {
+  return Posts.find();
+});
+```
+And in the **client** we subscribe to the publications
+```javascript
+Meteor.subscribe('posts');
+```
+
 # Packages commands
 
 Command                      | Action
