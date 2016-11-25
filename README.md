@@ -25,13 +25,13 @@ meteor remove autopublish
 ```
 In the **server** we configure that we will publish to our clients
 ```javascript
-Meteor.publish('posts', function() {
-  return Posts.find();
+Meteor.publish('posts', function(currentAuthor) {
+  return Posts.find({ author: currentAuthor });
 });
 ```
 And in the **client** we subscribe to the publications
 ```javascript
-Meteor.subscribe('posts');
+Meteor.subscribe('posts', 'jdnichollsc');
 ```
 
 # Packages commands
