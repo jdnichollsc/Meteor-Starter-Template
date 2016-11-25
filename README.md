@@ -57,16 +57,26 @@ The **Iron Router** package allows us to configure routing in the application, t
 ```cmd
 meteor add iron:router
 ```
-And we can create a dynamic zone to show the current route using **layouts** and the **yield** helper.
+We can create a dynamic zone to show the current route using **layouts** and the **yield** helper.
 
-> **layout.html**
-*****************
+> **./client/views/layout.html**
+********************************
 ```html
 <template name="layout">
   <div class="container">
     {{> yield}}
   </div>
 </template>
+```
+And we can configure the routes of our application
+> **./lib/router.js**
+*********************
+```javascript
+Router.configure({
+  layoutTemplate: 'layout'
+});
+
+Router.route('/', {name: 'postsList'});
 ```
 
 # Packages commands
