@@ -59,7 +59,8 @@ meteor add iron:router
 ```
 And we can create a dynamic zone to show the current route using **layouts** and the **yield** helper.
 
-**layout.html**
+> **layout.html**
+*****************
 ```html
 <template name="layout">
   <div class="container">
