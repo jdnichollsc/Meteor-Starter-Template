@@ -24,6 +24,8 @@ Command                      | Action
 ---------------------------  | -------------
 `meteor`                     | Runs meteor app
 `meteor list`                | Show packages
+`meteor shell`               | Access to server code
+`meteor mongo`               | Access to the database
 `meteor create app_name`     | Create meteor app
 `meteor add package_name`    | Add meteor packages
 `meteor remove package_name` | Add meteor packages
