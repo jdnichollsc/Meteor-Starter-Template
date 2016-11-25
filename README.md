@@ -43,6 +43,14 @@ Template.posts.helpers({
   }
 });
 ```
+We can exclude certain properties to get only what is needed from the server
+```javascript
+Meteor.publish('allPosts', function(currentAuthor){
+  return Posts.find({ author: currentAuthor }, {fields: {
+    date: false
+  }});
+});
+```
 
 # Packages commands
 
