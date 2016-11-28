@@ -301,6 +301,27 @@ And using the **spinner** helper
 </template>
 ```
 
+### Check
+A package to validate types and structure of variables.
+```cmd
+meteor add check
+```
+And we can check objects
+```javascript
+Meteor.methods({
+  postInsert: function(postAttributes) {
+    check(Meteor.userId(), String);
+    check(postAttributes, {
+      title: String,
+      url: String
+    });
+    
+    var user = Meteor.user();
+    //...
+  }
+});
+```
+
 # Packages commands
 
 Command                      | Action
