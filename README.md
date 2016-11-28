@@ -84,11 +84,9 @@ Router.route('/', {name: 'authors'});
 ```
 
 The **Iron Router** has a helper to generate links dynamically
-
 ```html
 <a href="{{pathFor 'authors'}}">Authors</a>
 ```
-
 Pre-loading data and showing templates
 ```javascript
 Router.configure({
@@ -98,7 +96,6 @@ Router.configure({
   waitOn: function() { return Meteor.subscribe('posts'); }
 });
 ```
-
 We can use parameters in the routes to load data
 ```javascript
 Router.route('/posts/:_id', {
@@ -106,7 +103,6 @@ Router.route('/posts/:_id', {
   data: function() { return Posts.findOne(this.params._id); }
 });
 ```
-
 
 ## Spinner
 We can add a package to create a loading template
@@ -121,6 +117,29 @@ And using the **spinner** helper
 <template name="loading">
   {{>spinner}}
 </template>
+```
+
+# Other helpers
+* For each:
+```html
+{{#each widgets}}
+  {{> widgetItem}}
+{{/each}}
+```
+
+* Use an object property:
+```html
+{{#with myWidget}}
+  {{> widgetPage}}
+{{/with}}
+OR
+{{> widgetPage myWidget}}
+```
+
+# Hooks
+* Show a template when the route is invalid:
+```javascript
+Router.onBeforeAction('dataNotFound', {only: 'postPage'});
 ```
 
 # Packages commands
