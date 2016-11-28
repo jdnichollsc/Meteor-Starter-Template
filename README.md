@@ -210,7 +210,7 @@ Template.postSubmit.events({
 });
 ```
 
-# Methods (Serder side)
+# Methods (Server side)
 Are functions executed from the **server** side to prevent user attacks.
 ```javascript
 Meteor.methods({
