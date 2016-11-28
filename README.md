@@ -219,6 +219,11 @@ Template.postSubmit.events({
 {{> widgetPage myWidget}}
 ```
 
+* Show only if the user is authenticated (**currentUser** is a helper from the **accounts** package):
+{{#if currentUser}}
+ <a href="{{pathFor 'postSubmit'}}">Submit Post</a>
+{{/if}}
+
 # Hooks
 * Show a template when the route is invalid:
 ```javascript
@@ -229,7 +234,11 @@ Router.onBeforeAction('dataNotFound', {only: 'postPage'});
 Router.route('/submit', {name: 'postSubmit'});
 var requireLogin = function() {
   if (! Meteor.user()) {
-    this.render('accessDenied');
+    if (Meteor.loggingIn()) {
+      this.render(this.loadingTemplate);
+    } else {
+      this.render('accessDenied');
+    }
   } else {
     this.next();
   }
@@ -242,7 +251,7 @@ Router.onBeforeAction(requireLogin, {only: 'postSubmit'});
 <template name="accessDenied">
   <div class="access-denied page">
     <h2>Access Denied</h2>
-    <p>You can't get here! Please log in.</p>
+    <p>Please log in.</p>
   </div>
 </template>
 ```
