@@ -138,6 +138,28 @@ Tracker.autorun(function() {
 });
 ```
 
+# User authentication
+We can add some packages to handle an account system
+```cmd
+//meteor add accounts-ui
+meteor add ian:accounts-ui-bootstrap-3
+meteor add accounts-password
+```
+And include the **loginButtons** helper in the template that you want
+> **./client/views/layout.html**
+********************************
+```html
+<template name="header">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="collapse navbar-collapse" id="navigation">
+      <ul class="nav navbar-nav navbar-right">
+        {{> loginButtons}}
+      </ul>
+    </div>
+  </nav>
+</template>
+```
+
 # Template helpers
 * For each:
 ```html
