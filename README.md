@@ -180,8 +180,8 @@ Posts.allow({
 });
 ```
 
-# Events
-We can create events listeners to save data, redirect the users, etc
+# Events (Client side)
+We can create events listeners to save data, redirect the users, etc from the **client** side.
 ```javascript
 Template.postSubmit.events({
   'submit form': function(e) {
@@ -196,8 +196,34 @@ Template.postSubmit.events({
     Router.go('postPage', post);
   },
   'click #myButton': function(e){
-    console.log(e);
+    //We can execute server methods
+    Meteor.call('addAuthors', { name: 'Nicholls' }, function(error, result) {
+      if (error){
+        console.log(error.reason);
+      }
+      else{
+        console.log("Redirect user...");
+      }
+    });
     return false;
+  }
+});
+```
+
+# Methods (Serder side)
+Are functions executed from the **server** side to prevent user attacks.
+```javascript
+Meteor.methods({
+  'addAuthors'({ name, birthdate }) {
+    new SimpleSchema({
+      name: { type: String },
+      birthdate: { type: Date }
+    }).validate({ name, birthdate });
+
+    if (name === 'admin') {
+      throw new Meteor.Error("You can't create an author with the name admin");
+    }
+    //...
   }
 });
 ```
