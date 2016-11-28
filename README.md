@@ -173,7 +173,7 @@ And include the **loginButtons** helper in the template that you want
 {{#with myWidget}}
   {{> widgetPage}}
 {{/with}}
-OR
+//OR MORE EASY...
 {{> widgetPage myWidget}}
 ```
 
