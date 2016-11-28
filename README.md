@@ -80,7 +80,47 @@ And we can configure the routes of our application
 Router.configure({
   layoutTemplate: 'layout'
 });
-Router.route('/', {name: 'postsList'});
+Router.route('/', {name: 'authors'});
+```
+
+The **Iron Router** has a helper to generate links dynamically
+
+```html
+<a href="{{pathFor 'authors'}}">Authors</a>
+```
+
+Pre-loading data and showing templates
+```javascript
+Router.configure({
+  layoutTemplate: 'layout',
+  loadingTemplate: 'loading',
+  notFoundTemplate: 'notFound',
+  waitOn: function() { return Meteor.subscribe('posts'); }
+});
+```
+
+We can use parameters in the routes to load data
+```javascript
+Router.route('/posts/:_id', {
+  name: 'postPage',
+  data: function() { return Posts.findOne(this.params._id); }
+});
+```
+
+
+## Spinner
+We can add a package to create a loading template
+```cmd
+meteor add sacha:spin
+```
+And using the **spinner** helper
+
+> **./client/views/loading.html**
+*********************************
+```html
+<template name="loading">
+  {{>spinner}}
+</template>
 ```
 
 # Packages commands
