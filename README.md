@@ -147,12 +147,9 @@ Meteor.startup(function() {
 And in the client side we can use the **observe** function to execute callbacks.
 ```javascript
 Posts.find().observe({
-  added: function(post) {
-  },
-  changed: function(post) {
-  },
-  removed: function(post) {
-  }
+  added: function(post) { },
+  changed: function(post) { },
+  removed: function(post) { }
 });
 ```
 
