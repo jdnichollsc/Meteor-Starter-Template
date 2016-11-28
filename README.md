@@ -134,7 +134,25 @@ Session.get('pageTitle');
 It is a block of code that is executed when the data changes.
 ```javascript
 Tracker.autorun(function() {
-  alert(Session.get('message'));
+ alert(Session.get('message'));
+});
+//Or when Meteor has loaded the collections
+Meteor.startup(function() {
+ Tracker.autorun(function() {
+  console.log('There are ' + Posts.find().count() + ' posts');
+ });
+});
+```
+
+And in the client side we can use the **observe** function to execute callbacks.
+```javascript
+Posts.find().observe({
+  added: function(post) {
+  },
+  changed: function(post) {
+  },
+  removed: function(post) {
+  }
 });
 ```
 
@@ -158,6 +176,11 @@ And include the **loginButtons** helper in the template that you want
     </div>
   </nav>
 </template>
+```
+
+To check our users we can use the **users** collection
+```javascript
+Meteor.users.find().count();
 ```
 
 # Template helpers
