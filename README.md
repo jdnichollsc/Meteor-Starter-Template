@@ -180,6 +180,29 @@ To check our users we can use the **users** collection
 Meteor.users.find().count();
 ```
 
+# Events
+We can create events listeners to save data, redirect the users, etc
+```javascript
+Template.postSubmit.events({
+  'submit form': function(e) {
+    e.preventDefault();
+    var $target = $(e.target);
+    var post = {
+      url: $target.find('[name=url]').val(),
+      title: $target.find('[name=title]').val()
+    };
+
+    post._id = Posts.insert(post);
+    Router.go('postPage', post);
+  },
+  'click #myButton': function(e){
+    console.log(e);
+    return false;
+  }
+});
+```
+
+
 # Template helpers
 * For each:
 ```html
