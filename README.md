@@ -220,9 +220,11 @@ Template.postSubmit.events({
 ```
 
 * Show only if the user is authenticated (**currentUser** is a helper from the **accounts** package):
+```html
 {{#if currentUser}}
  <a href="{{pathFor 'postSubmit'}}">Submit Post</a>
 {{/if}}
+```
 
 # Hooks
 * Show a template when the route is invalid:
