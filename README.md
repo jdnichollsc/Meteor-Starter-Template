@@ -119,7 +119,26 @@ And using the **spinner** helper
 </template>
 ```
 
-# Other helpers
+# Session
+It is a global store of reactive data, a central communication bus for different parts of the application.
+* Set a value
+```javascript
+Session.set('pageTitle', 'A different title');
+```
+* Get a value
+```javascript
+Session.get('pageTitle');
+```
+
+##Reactive blocks
+It is a block of code that is executed when the data changes.
+```javascript
+Tracker.autorun(function() {
+  alert(Session.get('message'));
+});
+```
+
+# Template helpers
 * For each:
 ```html
 {{#each widgets}}
@@ -127,7 +146,7 @@ And using the **spinner** helper
 {{/each}}
 ```
 
-* Use an object property:
+* Use an object property to load templates:
 ```html
 {{#with myWidget}}
   {{> widgetPage}}
