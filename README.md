@@ -104,21 +104,6 @@ Router.route('/posts/:_id', {
 });
 ```
 
-## Spinner
-We can add a package to create a loading template
-```cmd
-meteor add sacha:spin
-```
-And using the **spinner** helper
-
-> **./client/views/loading.html**
-*********************************
-```html
-<template name="loading">
-  {{>spinner}}
-</template>
-```
-
 # Session
 It is a global store of reactive data, a central communication bus for different parts of the application.
 * Set a value
@@ -130,7 +115,7 @@ Session.set('pageTitle', 'A different title');
 Session.get('pageTitle');
 ```
 
-##Reactive blocks
+# Reactive blocks
 It is a block of code that is executed when the data changes.
 ```javascript
 Tracker.autorun(function() {
@@ -175,9 +160,24 @@ And include the **loginButtons** helper in the template that you want
 </template>
 ```
 
-To check our users we can use the **users** collection
+To see our users we can use the **users** collection
 ```javascript
 Meteor.users.find().count();
+```
+
+## Security
+We need to remove the **insecure** package to handle the security **(Prevent the anonymous actions)**
+```cmd
+meteor remove insecure
+```
+If we want to allow actions from **authenticated users**, we can modify the rules of the collections using **allow** and **deny** functions.
+```javascript
+Posts.allow({
+  insert: function(userId, doc) {
+    // only allow posting if you are logged in
+    return !! userId;
+  }
+});
 ```
 
 # Events
@@ -202,7 +202,6 @@ Template.postSubmit.events({
 });
 ```
 
-
 # Template helpers
 * For each:
 ```html
@@ -224,6 +223,45 @@ Template.postSubmit.events({
 * Show a template when the route is invalid:
 ```javascript
 Router.onBeforeAction('dataNotFound', {only: 'postPage'});
+```
+* Prevent the access to the routes from anonymous users:
+```javascript
+Router.route('/submit', {name: 'postSubmit'});
+var requireLogin = function() {
+  if (! Meteor.user()) {
+    this.render('accessDenied');
+  } else {
+    this.next();
+  }
+};
+Router.onBeforeAction(requireLogin, {only: 'postSubmit'});
+```
+> **./client/views/accessDenied.html**
+**************************************
+```javascript
+<template name="accessDenied">
+  <div class="access-denied page">
+    <h2>Access Denied</h2>
+    <p>You can't get here! Please log in.</p>
+  </div>
+</template>
+```
+
+# Packages
+
+### Spinner
+We can add a package to create a loading template
+```cmd
+meteor add sacha:spin
+```
+And using the **spinner** helper
+
+> **./client/views/loading.html**
+*********************************
+```html
+<template name="loading">
+  {{>spinner}}
+</template>
 ```
 
 # Packages commands
