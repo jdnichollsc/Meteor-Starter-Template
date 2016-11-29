@@ -332,7 +332,7 @@ A package to validate types and structure of variables.
 ```cmd
 meteor add check
 ```
-And we can check objects
+And we can check objects to validate
 ```javascript
 Meteor.methods({
   postInsert: function(postAttributes) {
@@ -354,7 +354,7 @@ Utility                      | Action
 ---------------------------  | -------------
 `Meteor.isClient`            | Check if the current code is executed from the client side
 `Meteor.isServer`            | Check if the current code is executed from the server side
-`Meteor._sleepForMs()`       | Wait for 5 seconds
+`Meteor._sleepForMs(5000)`   | Wait for 5 seconds
 
 
 # Packages commands
