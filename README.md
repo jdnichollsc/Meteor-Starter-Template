@@ -247,6 +247,7 @@ throwError = function(message) {
   Errors.insert({message: message});
 };
 ```
+
 And we can remove the error after some time of having been rendered in the browser
 > **./client/views/errors.js**
 ******************************
