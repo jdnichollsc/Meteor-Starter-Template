@@ -165,7 +165,7 @@ To see our users we can use the **users** collection
 Meteor.users.find().count();
 ```
 
-## Security
+# Security
 We need to remove the **insecure** package to handle the security **(Prevent the anonymous actions)**
 ```cmd
 meteor remove insecure
@@ -196,6 +196,7 @@ Posts.allow({
   remove: ownsDocument
 });
 ```
+
 We can indicate only the fields that the user can modify
 ```javascript
 Posts.deny({
@@ -233,6 +234,32 @@ Template.postSubmit.events({
     });
     return false;
   }
+});
+```
+
+## Local Collections
+We can create collections only in the client, for example to show a list of errors
+> **./client/helpers/errors.js**
+********************************
+```javascript
+Errors = new Mongo.Collection(null);
+throwError = function(message) {
+  Errors.insert({message: message});
+};
+```
+And we can remove the error after some time of having been rendered in the browser
+> **./client/views/errors.js**
+******************************
+```javascript
+Template.error.onRendered(function() {
+  var error = this.data;
+  Meteor.setTimeout(function () {
+    Errors.remove(error._id);
+  }, 3000);
+});
+//OR ONLY CREATED
+Template.error.onCreated(function() {
+  //...
 });
 ```
 
