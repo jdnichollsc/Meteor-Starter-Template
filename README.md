@@ -386,13 +386,14 @@ Utility                      | Action
 
 # Packages commands
 
-Command                      | Action
----------------------------  | -------------
-`meteor`                     | Runs meteor app
-`meteor list`                | Show packages
-`meteor shell`               | Access to server code
-`meteor mongo`               | Access to the database
-`meteor create app_name`     | Create meteor app
-`meteor add package_name`    | Add meteor packages
-`meteor remove package_name` | Remove meteor packages
-`meteor reset`               | Delete the database and reset the project
+Command                                       | Action
+--------------------------------------------  | -------------
+`meteor`                                      | Runs meteor app
+`meteor list`                                 | Show packages
+`meteor shell`                                | Access to server code
+`meteor mongo`                                | Access to the database
+`meteor create app_name`                      | Create meteor app
+`meteor create --package jdnichollsc:errors`  | Create meteor package
+`meteor add package_name`                     | Add meteor packages
+`meteor remove package_name`                  | Remove meteor packages
+`meteor reset`                                | Delete the database and reset the project
