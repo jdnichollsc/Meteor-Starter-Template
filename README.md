@@ -170,12 +170,38 @@ We need to remove the **insecure** package to handle the security **(Prevent the
 ```cmd
 meteor remove insecure
 ```
-If we want to allow actions from **authenticated users**, we can modify the rules of the collections using **allow** and **deny** functions.
+If we want to allow actions only from **authenticated users**, we can modify the rules of the collections using **allow** and **deny** functions.
 ```javascript
 Posts.allow({
   insert: function(userId, doc) {
     // only allow posting if you are logged in
     return !! userId;
+  }
+});
+```
+Also we can modify the rules to update and remove documents created only by the owner user
+> **./lib/permissions.js**
+**************************
+```javascript
+// check that the userId specified owns the documents
+ownsDocument = function(userId, doc) {
+  return doc && doc.userId === userId;
+}
+```
+> **./collections/posts.js**
+****************************
+```javascript
+Posts.allow({
+  update: ownsDocument,
+  remove: ownsDocument
+});
+```
+We can indicate only the fields that the user can modify
+```javascript
+Posts.deny({
+  update: function(userId, post, fieldNames) {
+    // may only edit the following two fields:
+    return (_.without(fieldNames, 'url', 'title').length > 0);
   }
 });
 ```
@@ -321,6 +347,15 @@ Meteor.methods({
   }
 });
 ```
+
+# Meteor utilities
+
+Utility                      | Action
+---------------------------  | -------------
+`Meteor.isClient`            | Check if the current code is executed from the client side
+`Meteor.isServer`            | Check if the current code is executed from the server side
+`Meteor._sleepForMs()`       | Wait for 5 seconds
+
 
 # Packages commands
 
