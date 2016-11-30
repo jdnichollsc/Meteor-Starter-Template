@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "notFound": {
+      "pageNotFound": "Página no encontrada"
+    },
+    "index": {
+      "helloWorld": "Hola Mundo"
+    }
+  }
+}

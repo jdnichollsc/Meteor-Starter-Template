@@ -1,0 +1,16 @@
+<template name="App_body">
+  {{#HammerTouchArea gestureMap=templateGestures}}
+    <div id="container" class="{{cordova}}">
+      
+      <div id="content-container" class="container">
+        {{#momentum plugin="fade"}}
+          {{#if Template.subscriptionsReady}}
+            {{> Template.dynamic template=main}}
+          {{else}}
+            {{> loading}}
+          {{/if}}
+        {{/momentum}}
+      </div>
+    </div>
+  {{/HammerTouchArea}}
+</template>
