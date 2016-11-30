@@ -8,7 +8,7 @@ A protocol for communication between clients and the server. Sends the data via 
  - Publish and subscribe
  - Remote procedure calls
 
-# App Structure
+# Meteor Structure
 Path         | Explanation
 ----------   | -------------
 `./client/`  | Runs on client only.
@@ -54,7 +54,7 @@ Meteor.publish('allPosts', function(currentAuthor){
 });
 ```
 
-# Routes
+# Routes (You can use the [new router system](https://github.com/kadirahq/flow-router))
 The **Iron Router** package allows us to configure routing in the application, to use filters and manage subscriptions.
 ```cmd
 meteor add iron:router
